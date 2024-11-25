@@ -1,8 +1,7 @@
 package domain
 
 type User struct {
-	ID       string `json:"id" bson:"_id,omitempty"`
-	Name     string `json:"name"`
-	Email    string `json:"email"`
-	Password string `json:"password"`
+	Name     string `form:"name" json:"name" binding:"required"`
+	Email    string `form:"email" json:"email"  binding:"required,email"`
+	WhatsApp string `form:"whatsapp" json:"whatsapp" binding:"required"`
 }

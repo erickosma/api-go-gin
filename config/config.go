@@ -1,13 +1,19 @@
 package config
 
+import (
+	"os"
+)
+
 type Config struct {
-	MongoURI      string
-	MongoDatabase string
+	GoogleSheetsCredentials string
+	WhatsAppToken           string
+	SpreadsheetID           string
 }
 
-func LoadConfig() Config {
-	return Config{
-		MongoURI:      "mongodb://localhost:27017",
-		MongoDatabase: "api_go",
+func NewConfig() *Config {
+	return &Config{
+		GoogleSheetsCredentials: os.Getenv("GOOGLE_SHEETS_CREDENTIALS"),
+		WhatsAppToken:           os.Getenv("WHATSAPP_TOKEN"),
+		SpreadsheetID:           os.Getenv("SPREADSHEET_ID"),
 	}
 }

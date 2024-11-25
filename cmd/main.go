@@ -1,24 +1,27 @@
 package main
 
 import (
-	"api-go-gin/config"
-	"api-go-gin/internal/handler"
-	"api-go-gin/pkg/mongo"
+	"api-go-gin/internal/controller"
 	"github.com/gin-gonic/gin"
 	"log"
 )
 
 func main() {
+	//init
+	// Inicializar configurações
+	//cfg := config.NewConfig()
+
 	r := gin.Default()
 
-	db, err := mongo.ConnectMongo(config.LoadConfig())
-	if err != nil {
-		log.Fatal(err)
-	}
+	// Serve static files
+	r.Static("/static", "./web/static")
 
-	http.NewUserHandler(r, db)
+	// Serve templates
+	r.LoadHTMLGlob("web/templates/*")
 
-	if err := r.Run(); err != nil {
-		log.Fatal("Failed to run server: ", err)
-	}
+	// Route for the form
+	r.GET("/", controller.ShowForm)
+	r.POST("/submit", controller.SubmitForm)
+
+	log.Fatal(r.Run(":8080"))
 }
