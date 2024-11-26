@@ -1,7 +1,8 @@
 package main
 
 import (
-	"api-go-gin/internal/controller"
+	"api-go-gin/config"
+	"api-go-gin/internal/route"
 	"github.com/gin-gonic/gin"
 	"log"
 )
@@ -9,19 +10,17 @@ import (
 func main() {
 	//init
 	// Inicializar configurações
-	//cfg := config.NewConfig()
+	cfg := config.NewConfig()
 
 	r := gin.Default()
 
 	// Serve static files
-	r.Static("/static", "./web/static")
-
+	r.Static("/static", "./static")
 	// Serve templates
-	r.LoadHTMLGlob("web/templates/*")
+	r.LoadHTMLGlob("templates/*")
+	// Initialize routes
+	route.RegisterWebRoutes(r)
+	route.RegisterAPIRoutes(r)
 
-	// Route for the form
-	r.GET("/", controller.ShowForm)
-	r.POST("/submit", controller.SubmitForm)
-
-	log.Fatal(r.Run(":8080"))
+	log.Fatal(r.Run(":" + cfg.ServerPort))
 }
