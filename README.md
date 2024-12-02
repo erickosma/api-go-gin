@@ -1,5 +1,9 @@
 # api-go-gin
-Test golang
+<hr>
+
+# Technology
+
+- Go 1.23.2
+- Htmx
 
 
-teste

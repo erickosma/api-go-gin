@@ -1,12 +1,23 @@
-#submit-btn {
-    animation: spin 0s linear infinite;
+.error {
+    color: red;
+    font-size: 0.9em;
+}
+
+.loader {
+    display: none;
+    border: 5px solid #f3f3f3; /* Light grey */
+    border-top: 5px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(0deg);
-    }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+button[disabled] {
+    background-color: #ccc;
 }

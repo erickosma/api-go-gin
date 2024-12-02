@@ -9,11 +9,11 @@ import (
 )
 
 func Index(c *gin.Context) {
-	c.HTML(http.StatusOK, "index.html", gin.H{"title": "Home Page"})
+	c.HTML(http.StatusOK, "index.html", gin.H{"Title": "Home Page"})
 }
 
 func ShowForm(c *gin.Context) {
-	c.HTML(http.StatusOK, "form.html", gin.H{"title": "Cadastro"})
+	c.HTML(http.StatusOK, "form.html", gin.H{"Title": "Cadastro"})
 }
 
 func SubmitForm(c *gin.Context) {
